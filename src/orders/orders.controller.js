@@ -65,11 +65,11 @@ const dataHasDishes = dataHasField("dishes", {
 });
 
 // routes
-const list = (req, res, next) => {
+function list(req, res, next) {
     res.json({ data: orders });
 };
 
-const create = (req, res, next) => {
+function create(req, res, next) {
     const { deliverTo, mobileNumber, dishes } = res.locals;
     const newOrder = {
         id: nextId(),
@@ -81,12 +81,12 @@ const create = (req, res, next) => {
     res.status(201).json({ data: newOrder });
 };
 
-const read = (req, res, next) => {
+function read(req, res, next) {
     const { foundEntry } = res.locals;
     res.json({ data: foundEntry });
 };
 
-const update = (req, res, next) => {
+function update(req, res, next) {
     const { deliverTo, mobileNumber, status, foundEntry, dishes } = res.locals;
     const { id } = req.body.data;
     if (id && id !== foundEntry.id)
@@ -106,7 +106,7 @@ const update = (req, res, next) => {
     res.status(200).json({ data: foundEntry });
 };
 
-const destroy = (req, res, next) => {
+function destroy(req, res, next) {
     const { foundEntry } = res.locals;
     if (foundEntry.status !== "pending") next({
         status: 400,

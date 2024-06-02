@@ -30,16 +30,16 @@ const dataHasUrl = dataHasField('image_url', {empty: 'Dish must include a image_
 const dataHasId = dataHasField('id')
 
 // routes
-const list = (req, res, next) => {
+function list(req, res, next) {
     res.json({ data: dishes });
 }
 
-const read = (req, res, next) => {
+function read(req, res, next) {
     const { foundEntry } = res.locals;
     res.json({ data: foundEntry });
 }
 
-const create = (req, res, next) => {
+function create(req, res, next) {
     const { 
         name, 
         price, 
@@ -54,7 +54,7 @@ const create = (req, res, next) => {
     res.status(201).json({ data: newDish });
 }
 
-const update = (req, res, next) => {
+function update(req, res, next) {
     const { 
         foundEntry, 
         name, 
